@@ -23,6 +23,7 @@ Source1:	oracle-instantclient%{version}-basic-%{version}.%{x8664rel}.x86_64.zip
 NoSource:	0
 NoSource:	1
 URL:		http://www.oracle.com/technology/software/tech/oci/instantclient/index.html
+BuildRequires:	unzip
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
