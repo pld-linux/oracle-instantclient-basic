@@ -30,7 +30,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		srcdir	instantclient_%(echo %{version} | tr . _)
 
 %description
-Oracle database client - common files.
+Orcale Database Instant Client Package - Basic.
+All files required to run OCI, OCCI, and JDBC-OCI applications.
 
 %description -l pl.UTF-8
 Klient bazy danych Oracle - wspólne pliki.
