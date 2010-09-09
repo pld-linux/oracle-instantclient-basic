@@ -8,7 +8,7 @@
 # - if you want to build 64-bit version, comment out Source0
 
 %define		i386rel		0.1
-%define		x8664rel	0.0.2-1
+%define		x8664rel	0.1.0-1
 Summary:	Oracle database client - common files
 Summary(pl.UTF-8):	Klient bazy danych Oracle - wspólne pliki
 Name:		oracle-instantclient-basic
@@ -19,7 +19,7 @@ Group:		Applications
 Source0:	instantclient-basic-linux32-%{version}.%{i386rel}.zip
 # NoSource0-md5:	5d8bba5d245b885dc8a6fda5ec6e6442
 Source1:	oracle-instantclient%{version}-basic-%{version}.%{x8664rel}.x86_64.zip
-# NoSource1-md5:	e63c06632d315772f32cbb99926e5086
+# NoSource1-md5:	7d96ba339c3cb6d5ba5f2b40ed7ed02d
 NoSource:	0
 NoSource:	1
 URL:		http://www.oracle.com/technology/software/tech/oci/instantclient/index.html
