@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# Oracle InstantClient SDK config file
+# Jean-Christophe Duberga - Bordeaux 2 University
+#
+
+version=@@version@@
+prefix=@@prefix@@
+exec_prefix=${prefix}
+exec_prefix_set=no
+libdir=@@libdir@@
+includedir=@@includedir@@
+
+incdirs="-I${includedir}"
+libdirs="-L${libdir}"
+
+usage="\
+Usage: oracle-instantclient-config [--prefix[=DIR]] [--exec-prefix[=DIR]] [--version] [--cflags] [--libs] [--static-libs]"
+
+if test $# -eq 0; then
+      echo "${usage}" 1>&2
+      exit 1
+fi
+
+while test $# -gt 0; do
+  case "$1" in
+  -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+  *) optarg= ;;
+  esac
+
+  case $1 in
+    --prefix=*)
+      prefix=$optarg
+      if test $exec_prefix_set = no ; then
+        exec_prefix=$optarg
+      fi
+      ;;
+    --prefix)
+      echo $prefix
+      ;;
+    --exec-prefix=*)
+      exec_prefix=$optarg
+      exec_prefix_set=yes
+      ;;
+    --exec-prefix)
+      echo ${exec_prefix}
+      ;;
+    --version)
+      echo ${version}
+      ;;
+    --cflags)
+      echo ${incdirs}
+      ;;
+    --libs)
+      echo ${libdirs} -lclntsh -locci
+      ;;
+    --static-libs)
+      echo "No static libs" 1>&2
+      exit 1
+      ;;
+    *)
+      echo "${usage}" 1>&2
+      exit 1
+      ;;
+  esac
+  shift
+done
