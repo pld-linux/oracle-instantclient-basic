@@ -16,7 +16,7 @@ Name:		oracle-instantclient-basic
 Version:	11.2.0.1.0
 Release:	0.8
 License:	OTN (proprietary, non-distributable)
-Group:		Applications
+Group:		Applications/Databases
 Source0:	instantclient-basic-linux32-%{x86ver}.zip
 # NoSource0-md5:	5d8bba5d245b885dc8a6fda5ec6e6442
 Source1:	instantclient-sdk-linux32-%{x86ver}.zip
@@ -47,7 +47,7 @@ Klient bazy danych Oracle - wspólne pliki.
 
 %package devel
 Summary:	SDK for Oracle Database Instant Client
-Group:		Applications
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
