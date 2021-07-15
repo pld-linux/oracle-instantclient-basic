@@ -14,7 +14,7 @@ Summary(pl.UTF-8):	Klient bazy danych Oracle - wspólne pliki
 Name:		oracle-instantclient-basic
 Version:	19.10.0.0.0
 Release:	0.1
-License:	OTN (proprietary, non-distributable)
+License:	OTN (proprietary, re-distributable)
 Group:		Applications/Databases
 Source0:	https://download.oracle.com/otn_software/linux/instantclient/%{vdir}/instantclient-basic-linux-%{version}dbru.zip
 # NoSource0-md5:	333d0ec0c3d390472de6c39c380e6f45
@@ -38,6 +38,7 @@ ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_check_so	1
+%define		no_install_post_strip		1
 
 %description
 Orcale Database Instant Client Package - Basic.
@@ -100,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc instantclient_*/BASIC_README
+%doc instantclient_*/BASIC_{LICENSE,README}
 %attr(755,root,root) %{_bindir}/adrci
 %attr(755,root,root) %{_bindir}/genezi
 %attr(755,root,root) %{_libdir}/libclntsh.so
@@ -120,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc instantclient_*/SDK_README
+%doc instantclient_*/SDK_{LICENSE,README}
 %attr(755,root,root) %{_bindir}/oracle-instantclient-config
 %attr(755,root,root) %{_bindir}/ott
 %{_pkgconfigdir}/oracle-instantclient.pc
