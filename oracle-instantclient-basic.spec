@@ -38,6 +38,7 @@ NoSource:	3
 NoSource:	4
 NoSource:	5
 URL:		http://www.oracle.com/technology/software/tech/oci/instantclient/index.html
+BuildRequires:	rpm-javaprov
 BuildRequires:	sed
 BuildRequires:	unzip
 ExclusiveArch:	%{ix86} %{x8664} aarch64
