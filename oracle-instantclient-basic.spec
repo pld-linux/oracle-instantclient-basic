@@ -24,17 +24,23 @@ Source2:	https://download.oracle.com/otn_software/linux/instantclient/%{vdir}/in
 # NoSource2-md5:	88501585329ccbc7690aa20a105d2506
 Source3:	https://download.oracle.com/otn_software/linux/instantclient/%{vdir}/instantclient-sdk-linux.x64-%{version}dbru.zip
 # NoSource3-md5:	00aded152dcc2f26f4d8f44e6f7387d3
+Source4:	https://download.oracle.com/otn_software/linux/instantclient/%{vdir}/instantclient-basic-linux.arm64-%{version}dbru.zip
+# NoSource4-md5:	9898828fea2022366a812e13507b95f1
+Source5:	https://download.oracle.com/otn_software/linux/instantclient/%{vdir}/instantclient-sdk-linux.arm64-%{version}dbru.zip
+# NoSource5-md5:	ca2071b8734ed6d0c9805367d4076809
 # http://duberga.net/dbd_oracle_instantclient_linux/oracle-instantclient-config
-Source4:	oracle-instantclient-config.in
-Source5:	oracle-instantclient.pc.in
+Source6:	oracle-instantclient-config.in
+Source7:	oracle-instantclient.pc.in
 NoSource:	0
 NoSource:	1
 NoSource:	2
 NoSource:	3
+NoSource:	4
+NoSource:	5
 URL:		http://www.oracle.com/technology/software/tech/oci/instantclient/index.html
 BuildRequires:	sed
 BuildRequires:	unzip
-ExclusiveArch:	%{ix86} %{x8664}
+ExclusiveArch:	%{ix86} %{x8664} aarch64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_check_so	1
@@ -66,6 +72,10 @@ Oracle applications with Instant Client.
 %setup -q -c -T -a 2 -a 3
 %endif
 
+%ifarch aarch64
+%setup -q -c -T -a 4 -a 5
+%endif
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_datadir}/sqlplus,%{_javadir}} \
@@ -82,13 +92,13 @@ cp -p adrci $RPM_BUILD_ROOT%{_bindir}/adrci
 %{__sed} -e 's|@@prefix@@|%{_prefix}|' \
 	-e 's|@@libdir@@|%{_libdir}|' \
 	-e 's|@@includedir@@|%{_includedir}/oracle/client|' \
-	-e 's|@@version@@|%{version}|' %{SOURCE4} > \
+	-e 's|@@version@@|%{version}|' %{SOURCE6} > \
 		$RPM_BUILD_ROOT%{_bindir}/oracle-instantclient-config
 
 %{__sed} -e 's|@@prefix@@|%{_prefix}|' \
 	-e 's|@@libdir@@|%{_libdir}|' \
 	-e 's|@@includedir@@|%{_includedir}/oracle/client|' \
-	-e 's|@@version@@|%{version}|' %{SOURCE5} > \
+	-e 's|@@version@@|%{version}|' %{SOURCE7} > \
 		$RPM_BUILD_ROOT%{_pkgconfigdir}/oracle-instantclient.pc
 
 cp -p sdk/ottclasses.zip $RPM_BUILD_ROOT%{_javadir}
